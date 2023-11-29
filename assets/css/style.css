@@ -1,0 +1,477 @@
+/* ==================================================== 
+                   CSS ROOT VARIABLES 
+==================================================== */
+:root {
+  --header-height: 3.5rem;
+  /*========== Colors ==========*/
+  --hue: 228;
+  --first-color: hsl(var(--hue), 45%, 42%);
+  --title-color: #fff;
+  --text-color: hsl(var(--hue), 8%, 65%);
+  --body-color: hsl(var(--hue), 26%, 11%);
+  --container-color: hsl(var(--hue), 22%, 12%);
+  --container-color-light: hsl(var(--hue), 21%, 14%);
+  --border-color: hsl(var(--hue), 23%, 24%);
+  --black: #000;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Montserrat", sans-serif;
+  /* --body-font: 'Poppins', sans-serif; */
+  --big-font-size: 2.5rem;
+  --h1-font-size: 1.75rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+  --smaller-font-size: 0.625rem;
+
+  /*========== Font weight ==========*/
+  --weight-400: 400;
+  --weight-500: 500;
+  --weight-700: 700;
+
+  /*========== Transition ==========*/
+  --transition-2: all 0.2s ease-in-out;
+  --transition-3: all 0.3s ease-in-out;
+  --transition-4: all 0.4s ease-in-out;
+  --transition-5: all 0.5s ease-in-out;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (max-width: 992px) {
+  :root {
+    --big-font-size: 1.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+  }
+}
+
+/* ==================================================== 
+                   RESET CSS STYLING 
+==================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--body-font);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--title-color);
+  font-weight: var(--weight-700);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ==================================================== 
+                   REUSABLE CSS UTILITIES 
+==================================================== */
+.container {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.section {
+  padding-block: 4rem 3.5rem;
+}
+.section-title {
+  font-size: var(--h1-font-size);
+  margin-bottom: 1.75rem;
+}
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: var(--transition-3);
+}
+.nav {
+  height: calc(var(--header-height) + 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.nav-list {
+  display: flex;
+  column-gap: 2rem;
+}
+.nav-link {
+  color: var(--title-color);
+  transition: var(--transition-2);
+}
+.nav-close,
+.nav-toggle {
+  display: none;
+  cursor: pointer;
+}
+/* Scroll header */
+.scroll-header {
+  background: var(--container-color);
+  box-shadow: 0 2.5rem 4rem hsla(227, 46%, 22%, 0.596);
+}
+/* Active link */
+.nav-link:hover {
+  color: var(--first-color);
+}
+/*=============== HOME ===============*/
+.home {
+  background-image: url(../images/bg.jpg);
+  background-size: cover;
+  background-position: center;
+  padding-block: 6rem 2rem;
+}
+.home-container {
+  grid-template-columns: 4fr 8fr;
+  align-items: center;
+}
+.home-title {
+  font-size: var(--big-font-size);
+  text-transform: uppercase;
+}
+.home-description {
+  margin-block: 1.25rem 1.5rem;
+}
+/*=============== BUTTON ===============*/
+.btn {
+  display: inline-block;
+  background: var(--first-color);
+  color: var(--title-color);
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: var(--weight-500);
+  cursor: pointer;
+}
+/*=============== BRAND ===============*/
+.brand-item {
+  background-color: var(--container-color);
+  height: 100px;
+  border-radius: 0.5rem;
+}
+.brand-logo {
+  width: 80%;
+  height: 100px;
+  object-fit: contain;
+}
+/*=============== ANIME ===============*/
+.anime-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+.anime-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  vertical-align: middle;
+  transition: var(--transition-3);
+}
+.anime-item:hover .anime-img {
+  transform: scale(1.1);
+}
+.anime-data {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    var(--black) 20%,
+    hsla(0, 0%, 22%, 0.04) 100%
+  );
+  width: 100%;
+  height: 125px;
+  padding: 1.5rem 1.25rem 0;
+}
+.anime-title {
+  font-size: var(--normal-font-size);
+}
+.anime-detail {
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  margin-block: 0.5rem 0.75rem;
+  display: inline-block;
+}
+.anime-rating {
+  font-size: var(--small-font-size);
+  color: hsl(39, 100%, 55%);
+}
+/*=============== SUBSCRIPTION ===============*/
+.subscription {
+  background: var(--container-color-light);
+  padding-block: 2rem;
+  height: 510px;
+  overflow: hidden;
+}
+.subscription-container {
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+.subscription-img {
+  justify-self: center;
+}
+.subscription-title,
+.subscription-date {
+  text-transform: uppercase;
+}
+.subscription-title {
+  margin-bottom: 1.25rem;
+}
+.subscription-date {
+  color: var(--title-color);
+  font-size: var(--h2-font-size);
+  font-weight: var(--weight-700);
+}
+.subscription-description {
+  max-width: 500px;
+  margin-block: 1.25rem 1.5rem;
+}
+/*=============== TRENDING ANIME ===============*/
+.trending-anime {
+  background: var(--container-color-light);
+}
+/*=============== FOOTER ===============*/
+.footer {
+  background: var(--container-color-light);
+}
+.footer-container {
+  padding-block: 4rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+.footer-anime-item img {
+  width: 95px;
+  height: 80px;
+  object-fit: cover;
+}
+.footer-anime-item,
+.tweet-item {
+  display: flex;
+  column-gap: 1rem;
+}
+.footer-anime-item:not(:last-child),
+.tweet-item:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+.item-data {
+  width: calc(100% - 7rem);
+}
+.item-title,
+.tweet-title {
+  font-size: var(--normal-font-size);
+  font-weight: var(--weight-500);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+.footer-title {
+  font-size: var(--h3-font-size);
+  margin-bottom: 1.5rem;
+}
+.footer-instagram {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.item-details,
+.tweet-details {
+  color: var(--first-color);
+  font-size: var(--small-font-size);
+}
+.item-details {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.item-rating {
+  color: hsl(39, 100%, 55%);
+  font-size: var(--small-font-size);
+}
+.tweet-item:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+.tweet-icon {
+  color: var(--first-color);
+  font-size: var(--h1-font-size);
+}
+.feed-img {
+  height: 70px;
+  width: 100%;
+  object-fit: cover;
+}
+.footer-bottom {
+  background: var(--first-color);
+  padding-block: 1rem;
+}
+.footer-copyright {
+  color: var(--title-color);
+  text-align: center;
+}
+#heart-icon {
+  color: #ff7171;
+}
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 1400px) {
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+  .home-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+  .home-container,
+  .subscription-container {
+    grid-template-columns: 1fr;
+  }
+  .home-content {
+    order: 1;
+  }
+  .subscription {
+    height: 100%;
+  }
+  .subscription-description {
+    max-width: 100%;
+  }
+  .item-title,
+  .tweet-title {
+    font-size: var(--small-font-size);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background: var(--title-color);
+    width: 400px;
+    height: 100%;
+    padding: 8rem 1rem;
+    transition: var(--transition-4);
+  }
+  /* Show Menu */
+  .show-menu {
+    right: 0;
+  }
+  .nav-list {
+    flex-direction: column;
+    row-gap: 2.75rem;
+    font-size: 1.2rem;
+  }
+  .nav-link {
+    padding: 1rem;
+    width: 100%;
+    color: var(--black);
+    border-bottom: 1px solid #bbb;
+  }
+  .active-link {
+    background: var(--first-color);
+    color: var(--title-color);
+    display: block;
+  }
+  .nav-close {
+    color: #fff;
+  }
+  .nav-close,
+  .nav-toggle {
+    display: block;
+    font-size: var(--h2-font-size);
+  }
+  .nav-toggle {
+    color: var(--title-color);
+  }
+  .nav-close {
+    color: var(--black);
+    position: absolute;
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* For small devices */
+@media screen and (max-width: 576px) {
+  .section {
+    padding-block: 3rem;
+  }
+  .nav {
+    height: var(--header-height);
+  }
+  .nav-menu {
+    width: 100%;
+  }
+  .footer-container {
+    padding-block: 2rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .brand-logo {
+    margin: 0rem 4rem;
+    width: 60%;
+  }
+  .home-title {
+    font-size: 1.6rem;
+  }
+  .nav-logo-img {
+    width: 150px;
+  }
+  .footer-anime-item img {
+    width: 80px;
+  }
+  .footer-instagram {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .banner-img {
+    width: 100%;
+  }
+}
